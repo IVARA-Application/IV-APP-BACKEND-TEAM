@@ -10,38 +10,38 @@ class AttendancePage extends StatefulWidget {
 class _AttendancePageState extends State<AttendancePage> {
   int currentday = 0;
   Color blue = Color(0xFF076FA0);
-  List<Map> attendance=[
+  List<Map> attendance = [
     {
-      'time':'7:00 AM',
-      'subject':'Physics',
-      'teacherName':'Akansha',
-      'teacherId':'2978',
-      'roomNo':'C208',
-      'present':true
+      'time': '7:00 AM',
+      'subject': 'Physics',
+      'teacherName': 'Akansha',
+      'teacherId': '2978',
+      'roomNo': 'C208',
+      'present': true
     },
     {
-      'time':'9:00 AM',
-      'subject':'Biology',
-      'teacherName':'Hemanth',
-      'teacherId':'007',
-      'roomNo':'C290',
-      'present':false
+      'time': '9:00 AM',
+      'subject': 'Biology',
+      'teacherName': 'Hemanth',
+      'teacherId': '007',
+      'roomNo': 'C290',
+      'present': false
     },
     {
-      'time':'11:00 AM',
-      'subject':'Maths',
-      'teacherName':'Tarun',
-      'teacherId':'1574',
-      'roomNo':'C114',
-      'present':true
+      'time': '11:00 AM',
+      'subject': 'Maths',
+      'teacherName': 'Tarun',
+      'teacherId': '1574',
+      'roomNo': 'C114',
+      'present': true
     },
     {
-      'time':'1:00 PM',
-      'subject':'Hindi',
-      'teacherName':'Hemanth',
-      'teacherId':'007',
-      'roomNo':'C290',
-      'present':false
+      'time': '1:00 PM',
+      'subject': 'Hindi',
+      'teacherName': 'Hemanth',
+      'teacherId': '007',
+      'roomNo': 'C290',
+      'present': false
     },
   ];
   var months = [
@@ -74,7 +74,7 @@ class _AttendancePageState extends State<AttendancePage> {
       child: Container(
         height: screenHeight * 0.046,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4.0),
+          borderRadius: BorderRadius.circular(screenHeight*0.015),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -123,7 +123,7 @@ class _AttendancePageState extends State<AttendancePage> {
           padding: EdgeInsets.all(screenWidth * 0.015),
           child: GestureDetector(
               child: Material(
-                borderRadius: BorderRadius.circular(screenHeight * 0.01),
+                borderRadius: BorderRadius.circular(screenHeight * 0.022),
                 color: Colors.white,
                 elevation: index == currentday ? 8 : 0,
                 child: Padding(
@@ -168,7 +168,7 @@ class _AttendancePageState extends State<AttendancePage> {
       appBar: AppBar(
         backgroundColor: blue,
         title: Center(
-          child: Text('IVENTORS'),
+          child: Text('IVARA'),
         ),
         actions: [Icon(Icons.notifications)],
       ),
@@ -182,6 +182,10 @@ class _AttendancePageState extends State<AttendancePage> {
                   horizontal: screenWidth * 0.008),
               child: Card(
                 elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(screenHeight * 0.022)),
+                ),
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -199,7 +203,7 @@ class _AttendancePageState extends State<AttendancePage> {
                 ),
               ),
             ),
-            SizedBox(height:screenHeight*0.01),
+            SizedBox(height: screenHeight * 0.01),
             Expanded(
                 child: ListView.builder(
               itemCount: attendance.length,
@@ -208,18 +212,26 @@ class _AttendancePageState extends State<AttendancePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      width:screenWidth*0.3,
-                      padding: EdgeInsets.symmetric(vertical:screenHeight*0.007),
-                      child: Center(child: Text(attendance[index]['time'],style:TextStyle(fontSize: screenHeight*0.022))),
+                      width: screenWidth * 0.3,
+                      padding:
+                          EdgeInsets.symmetric(vertical: screenHeight * 0.007),
+                      child: Center(
+                          child: Text(attendance[index]['time'],
+                              style:
+                                  TextStyle(fontSize: screenHeight * 0.022))),
                     ),
                     Column(
                       children: [
                         Icon(
-                          attendance[index]['present']?Icons.check_circle:Icons.highlight_off,
-                          color: attendance[index]['present']?Colors.green:Colors.red,
+                          attendance[index]['present']
+                              ? Icons.check_circle
+                              : Icons.highlight_off,
+                          color: attendance[index]['present']
+                              ? Colors.green
+                              : Colors.red,
                         ),
                         Padding(
-                          padding: EdgeInsets.all(screenHeight*0.003),
+                          padding: EdgeInsets.all(screenHeight * 0.003),
                           child: Container(
                               height: screenHeight * 0.15,
                               width: screenWidth * 0.003,
@@ -228,34 +240,45 @@ class _AttendancePageState extends State<AttendancePage> {
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left:screenWidth*0.04),
+                      padding: EdgeInsets.only(left: screenWidth * 0.04),
                       child: Container(
                         child: Container(
-                          height:screenHeight*0.15,
+                          height: screenHeight * 0.15,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                            Text(attendance[index]['subject'],style:TextStyle(fontSize: screenHeight*0.03,color: blue,fontWeight: FontWeight.w500)),
-                            Row(
-                              children: [
-                                Text('Teacher Name : ',style:TextStyle(color: blue)),
-                                Text(attendance[index]['teacherName'],style:TextStyle(color: blue)),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text('Teacher ID : ',style:TextStyle(color: blue)),
-                                Text(attendance[index]['teacherId'],style:TextStyle(color: blue)),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text('Room No. : ',style:TextStyle(color: blue)),
-                                Text(attendance[index]['roomNo'],style:TextStyle(color: blue)),
-                              ],
-                            )
-                          ],),
+                              Text(attendance[index]['subject'],
+                                  style: TextStyle(
+                                      fontSize: screenHeight * 0.03,
+                                      color: blue,
+                                      fontWeight: FontWeight.w500)),
+                              Row(
+                                children: [
+                                  Text('Teacher Name : ',
+                                      style: TextStyle(color: blue)),
+                                  Text(attendance[index]['teacherName'],
+                                      style: TextStyle(color: blue)),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('Teacher ID : ',
+                                      style: TextStyle(color: blue)),
+                                  Text(attendance[index]['teacherId'],
+                                      style: TextStyle(color: blue)),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('Room No. : ',
+                                      style: TextStyle(color: blue)),
+                                  Text(attendance[index]['roomNo'],
+                                      style: TextStyle(color: blue)),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     )
