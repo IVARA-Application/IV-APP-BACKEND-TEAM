@@ -9,6 +9,7 @@ import 'layout/main_drawer.dart';
 
 
 class StudentHomePage extends StatefulWidget{
+  static String id = 'StudentHomePage';
   @override
   _StudentHomePageState  createState() => _StudentHomePageState();
 

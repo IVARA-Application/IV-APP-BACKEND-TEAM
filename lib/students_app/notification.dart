@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NotificationPage extends StatefulWidget{
+  static String id = 'NotificationPage';
   @override
   _NotificationPageState  createState() => _NotificationPageState();
 
