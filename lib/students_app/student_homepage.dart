@@ -9,7 +9,9 @@ import 'layout/main_drawer.dart';
 
 
 class StudentHomePage extends StatefulWidget{
+
   static String id = 'StudentHomePage';
+
   @override
   _StudentHomePageState  createState() => _StudentHomePageState();
 
@@ -29,6 +31,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
               IconButton(
                 onPressed: () {
                   Navigator.push(context,MaterialPageRoute(builder: (context)=>NotificationPage()));
+
                 },
                 icon: Stack(
                   children: <Widget>[
@@ -107,10 +110,10 @@ class _StudentHomePageState extends State<StudentHomePage> {
           ],
         ),
       ),
+
     );
   }
 }
-
 
 
 
