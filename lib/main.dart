@@ -7,7 +7,7 @@ import 'students_app/attendance/attendance.dart';
 import 'students_app/academics/academics.dart';
 import 'students_app/academics/test.dart';
 import 'students_app/dashboard/dashboard.dart';
-import 'students_app/dashboard/subject_page.dart';
+import 'students_app/dashboard/subject_chatpage.dart';
 import 'students_app/student_homepage.dart';
 
 void main() {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: HomePage.id,
+      initialRoute: AcademicsPage.id,
       routes: {
         HomePage.id:(context)=>HomePage(),
         LoginPage.id:(context)=>LoginPage(),
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         AcademicsPage.id:(context)=>AcademicsPage(),
         TestPage.id:(context)=>TestPage(),
         DashboardPage.id:(context)=>DashboardPage(),
-        SubjectPage.id:(context)=>SubjectPage(),
+        SubjectChatPage.id:(context)=>SubjectChatPage(),
         StudentHomePage.id:(context)=>StudentHomePage()
       },
     );
