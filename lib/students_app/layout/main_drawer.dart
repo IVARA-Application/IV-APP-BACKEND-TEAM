@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 
@@ -112,9 +113,19 @@ class MainDrawer extends StatelessWidget{
             ),
             onTap: () {},
           ),
+          ListTile(
+            leading: Icon(Icons.phone),
+            title: Text(
+              'Contact Us',
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.blue,
+              ),
+            ),
+            onTap: () {},
+          ),
         ],
       ),
     );
   }
 }
-
