@@ -53,67 +53,100 @@ class _StudentHomePageState extends State<StudentHomePage> {
       ),
       drawer: MainDrawer(),
 
-      body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Text("This is student homepage"),
-            RaisedButton(
+       body: Container(
+          child: ListView(
+           children: <Widget>[
+                Text("Hello, \n Sumit "),
+                RaisedButton(
+                  elevation: 10.0,
+                highlightElevation: 30.0,
+                padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
                 onPressed: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context)=>NotificationPage()));
+                    Navigator.push(context,MaterialPageRoute(builder: (context)=>NotificationPage()));
+                  },
+                       color: Colors.blue,
+                        child: Text(
+                              'Notification',
+                               style: TextStyle(
+                                  color: Colors.white,
+                                 fontSize: 30,
+                               ),
+                                         ),
+                                     shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(10.0))),
+                 RaisedButton(
+                          onPressed: () {
+                                 Navigator.pushNamed(context, DashboardPage.id);
+                                                  },
+                        color: Colors.blue,
+                         child: Text(
+                              'STUDENT DASHBOARD',
+                              style: TextStyle(
+                             color: Colors.white),
+                                   ),
+    shape: new RoundedRectangleBorder(
+    borderRadius: new BorderRadius.circular(10.0))),
+    RaisedButton(
+    onPressed: () {
+    Navigator.pushNamed(context, AcademicsPage.id);
+    },
+    color: Colors.blue,
+    child: Text(
+    'ACADEMICS',
+    style: TextStyle(
+    color: Colors.white),
+    ),
+    shape: new RoundedRectangleBorder(
+    borderRadius: new BorderRadius.circular(10.0))),
+    RaisedButton(
+    onPressed: () {
+    Navigator.pushNamed(context, AttendancePage.id);
+    },
+    color: Colors.blue,
+    child: Text(
+    'ATTENDANCE',
+    style: TextStyle(
+    color: Colors.white),
+    ),
+    shape: new RoundedRectangleBorder(
+    borderRadius: new BorderRadius.circular(10.0))),
+    RaisedButton(
+    onPressed: () {
+    Navigator.pushNamed(context, AttendancePage.id);
+    },
+    color: Colors.blue,
+    child: Text(
+    'AR LAB',
+    style: TextStyle(
+    color: Colors.white),
+    ),
+    shape: new RoundedRectangleBorder(
+    borderRadius: new BorderRadius.circular(10.0))),
+    RaisedButton(
+    onPressed: () {
+    Navigator.pushNamed(context, AttendancePage.id);
+    },
+    color: Colors.blue,
+    child: Text(
+    'AR CLASSROOM',
+    style: TextStyle(
+    color: Colors.white),
+    ),
+    shape: new RoundedRectangleBorder(
+    borderRadius: new BorderRadius.circular(10.0))),
+  
+    ],
 
-                },
-                color: Colors.blue,
-                child: Text(
-                  'Notification',
-                  style: TextStyle(
-                      color: Colors.white),
-                ),
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0))),
-            RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, DashboardPage.id);
-                },
-                color: Colors.blue,
-                child: Text(
-                  'Dashboard',
-                  style: TextStyle(
-                      color: Colors.white),
-                ),
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0))),
-            RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AcademicsPage.id);
-                },
-                color: Colors.blue,
-                child: Text(
-                  'Academics',
-                  style: TextStyle(
-                      color: Colors.white),
-                ),
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0))),
-            RaisedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AttendancePage.id);
-                },
-                color: Colors.blue,
-                child: Text(
-                  'Attendance',
-                  style: TextStyle(
-                      color: Colors.white),
-                ),
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0))),
 
-          ],
-        ),
-      ),
-
+    ),
+   )
     );
+
+
+
   }
 }
+
 
 
 
