@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ivara_app/students_app/dashboard/subject_page.dart';
+import './subjectCard.dart';
 
 class DashboardPage extends StatelessWidget {
   static String id = 'DashboardPage';
@@ -7,21 +7,44 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+    List<SubjectCard> subjectCardd = [
+      SubjectCard(subjectName: 'Biology'),
+      SubjectCard(subjectName: 'Physics'),
+      SubjectCard(subjectName: 'Chemistry'),
+      SubjectCard(subjectName: 'Biology'),
+      SubjectCard(subjectName: 'Physics'),
+      SubjectCard(subjectName: 'Chemistry'),
+    ];
+
+    Widget subjectCardTemplate(subjectCard) {
+      return SubjectCardWidget(
+        screenHeight: screenHeight,
+        screenWidth: screenWidth,
+        subjectCard: subjectCard,
+      );
+    }
+
     return Scaffold(
-      body: SafeArea(
-        child: RaisedButton(
-            onPressed: () { 
-              Navigator.pushNamed(context, SubjectPage.id);
-            },
-            color: Colors.blue,
-            child: Text(
-              'Subject Chat',
-              style: TextStyle(
-                  color: Colors.white),
+        backgroundColor: Colors.white,
+        drawer: Drawer(),
+        appBar: AppBar(
+          backgroundColor: Color(0xff0772a0),
+          title: Center(
+            child: Text('IVENTORS'),
+          ),
+          actions: [Icon(Icons.notifications)],
+        ),
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              children: subjectCardd
+                  .map((SubjectCard) => subjectCardTemplate(SubjectCard))
+                  .toList(),
             ),
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(10.0))),
-      ),
-    );
+          ),
+        )
+      );
   }
 }

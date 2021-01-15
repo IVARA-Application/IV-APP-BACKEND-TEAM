@@ -1,4 +1,4 @@
-# ivara_app
+# IVARA app design
 
 A new Flutter application.
 
