@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'Parents_app/Academics_parents/Pacademics.dart';
+import 'Parents_app/Academics_parents/Ptest.dart';
+import 'Parents_app/Parents_attendance/p_attendance.dart';
+import 'Parents_app/Parents_homepage.dart';
 import 'homepage.dart';
 import 'students_app/auth/login.dart';
 import 'students_app/auth/signup.dart';
@@ -24,7 +28,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: AcademicsPage.id,
+      initialRoute: HomePage.id,
       routes: {
         HomePage.id:(context)=>HomePage(),
         LoginPage.id:(context)=>LoginPage(),
@@ -35,8 +39,13 @@ class MyApp extends StatelessWidget {
         TestPage.id:(context)=>TestPage(),
         DashboardPage.id:(context)=>DashboardPage(),
         SubjectChatPage.id:(context)=>SubjectChatPage(),
-        StudentHomePage.id:(context)=>StudentHomePage()
+        StudentHomePage.id:(context)=>StudentHomePage(),
+        PAttendancePage.id:(context)=>PAttendancePage(),
+        ParentsHomePage.id:(context)=>ParentsHomePage(),
+       PAcademicsPage.id:(context)=>PAcademicsPage(),
+        PTestPage.id:(context)=>PTestPage(),
       },
+
     );
   }
 }

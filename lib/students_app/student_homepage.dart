@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ivara_app/Parents_app/Parents_homepage.dart';
 import 'package:ivara_app/students_app/academics/academics.dart';
 import 'package:ivara_app/students_app/attendance/attendance.dart';
 import 'package:ivara_app/students_app/dashboard/dashboard.dart';
@@ -134,6 +135,19 @@ class _StudentHomePageState extends State<StudentHomePage> {
     ),
     shape: new RoundedRectangleBorder(
     borderRadius: new BorderRadius.circular(10.0))),
+
+             RaisedButton(
+                 onPressed: () {
+                   Navigator.push(context,MaterialPageRoute(builder: (context)=>ParentsHomePage()));
+                 },
+                 color: Colors.blue,
+                 child: Text(
+                   'PARENTS',
+                   style: TextStyle(
+                       color: Colors.white),
+                 ),
+                 shape: new RoundedRectangleBorder(
+                     borderRadius: new BorderRadius.circular(10.0))),
   
     ],
 
