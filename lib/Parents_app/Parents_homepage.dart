@@ -58,10 +58,12 @@ class _ParentsHomePageState extends State<ParentsHomePage> {
         body: Container(
           child: ListView(
             children: <Widget>[
-              Text("Hello, \n Sumit Guardian "),
+              SizedBox(height: 40),
+              SizedBox(height: 40),
+              SizedBox(height: 40),
               RaisedButton(
                   elevation: 10.0,
-                  highlightElevation: 30.0,
+                  highlightElevation: 10.0,
                   padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
                   onPressed: () {
                     Navigator.push(context,MaterialPageRoute(builder: (context)=>Teacherlist()));
@@ -76,7 +78,12 @@ class _ParentsHomePageState extends State<ParentsHomePage> {
                   ),
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(10.0))),
+              SizedBox(height: 40),
+              SizedBox(height: 40),
               RaisedButton(
+                  elevation: 10.0,
+                  highlightElevation: 10.0,
+                  padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
                   onPressed: () {
                     Navigator.push(context,MaterialPageRoute(builder: (context)=>AcademicsPage()));
                   },
@@ -84,11 +91,17 @@ class _ParentsHomePageState extends State<ParentsHomePage> {
                   child: Text(
                     'ACADEMICS',
                     style: TextStyle(
+                        fontSize: 30,
                         color: Colors.white),
                   ),
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(10.0))),
+              SizedBox(height: 40),
+              SizedBox(height: 40),
               RaisedButton(
+                  elevation: 10.0,
+                  highlightElevation: 10.0,
+                  padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
                   onPressed: () {
                     Navigator.push(context,MaterialPageRoute(builder: (context)=>PAttendancePage()));
                   },
@@ -96,6 +109,7 @@ class _ParentsHomePageState extends State<ParentsHomePage> {
                   child: Text(
                     'ATTENDANCE',
                     style: TextStyle(
+                        fontSize: 30,
                         color: Colors.white),
                   ),
                   shape: new RoundedRectangleBorder(
@@ -112,7 +126,3 @@ class _ParentsHomePageState extends State<ParentsHomePage> {
 
   }
 }
-
-
-
-

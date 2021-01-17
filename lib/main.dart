@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'Parents_app/Academics_parents/Pacademics.dart';
-import 'Parents_app/Academics_parents/Ptest.dart';
+import 'package:ivara_app/students_app/drawer_part/Healmymind/Heal_my_mind.dart';
+import 'package:ivara_app/students_app/drawer_part/Healmymind/chat_to_counsellor.dart';
+import 'package:ivara_app/students_app/drawer_part/Healmymind/heal_my_mind_videos.dart';
 import 'Parents_app/Parents_attendance/p_attendance.dart';
 import 'Parents_app/Parents_homepage.dart';
 import 'homepage.dart';
@@ -42,8 +43,10 @@ class MyApp extends StatelessWidget {
         StudentHomePage.id:(context)=>StudentHomePage(),
         PAttendancePage.id:(context)=>PAttendancePage(),
         ParentsHomePage.id:(context)=>ParentsHomePage(),
-       PAcademicsPage.id:(context)=>PAcademicsPage(),
-        PTestPage.id:(context)=>PTestPage(),
+        HealMyMindPage.id:(context)=>HealMyMindPage(),
+        HealMyMindVideosPage.id:(context)=>HealMyMindVideosPage(),
+        ChatToCounsellorPage.id:(context)=>ChatToCounsellorPage(),
+
       },
 
     );

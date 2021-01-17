@@ -168,7 +168,7 @@ class _PAttendancePageState extends State<PAttendancePage> {
       appBar: AppBar(
         backgroundColor: blue,
         title: Center(
-          child: Text('IVARA'),
+          child: Text('ATTENDANCE'),
         ),
         actions: [Icon(Icons.notifications)],
       ),

@@ -24,7 +24,7 @@ class _StudentHomePageState extends State<StudentHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("IVENTORS"),
+        title: Text("STUDENT HOMEPAGE"),
         backgroundColor: Colors.lightBlue,
         actions: <Widget>[
           Row(
@@ -57,10 +57,13 @@ class _StudentHomePageState extends State<StudentHomePage> {
        body: Container(
           child: ListView(
            children: <Widget>[
-                Text("Hello, \n Sumit "),
+            //    Text("Hello, \n Sumit "),
+             SizedBox(height: 40),
+             SizedBox(height: 40),
+             SizedBox(height: 40),
                 RaisedButton(
                   elevation: 10.0,
-                highlightElevation: 30.0,
+                highlightElevation: 10.0,
                 padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
                 onPressed: () {
                     Navigator.push(context,MaterialPageRoute(builder: (context)=>NotificationPage()));
@@ -75,7 +78,13 @@ class _StudentHomePageState extends State<StudentHomePage> {
                                          ),
                                      shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(10.0))),
+               SizedBox(height: 40),
+             SizedBox(height: 40),
+
                  RaisedButton(
+                     elevation: 10.0,
+                     highlightElevation: 10.0,
+                     padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
                           onPressed: () {
                                  Navigator.pushNamed(context, DashboardPage.id);
                                                   },
@@ -83,11 +92,18 @@ class _StudentHomePageState extends State<StudentHomePage> {
                          child: Text(
                               'STUDENT DASHBOARD',
                               style: TextStyle(
+                                  fontSize: 30,
                              color: Colors.white),
                                    ),
     shape: new RoundedRectangleBorder(
     borderRadius: new BorderRadius.circular(10.0))),
+             SizedBox(height: 40),
+             SizedBox(height: 40),
+
     RaisedButton(
+        elevation: 10.0,
+        highlightElevation: 10.0,
+        padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
     onPressed: () {
     Navigator.pushNamed(context, AcademicsPage.id);
     },
@@ -95,35 +111,57 @@ class _StudentHomePageState extends State<StudentHomePage> {
     child: Text(
     'ACADEMICS',
     style: TextStyle(
+        fontSize: 30,
     color: Colors.white),
     ),
     shape: new RoundedRectangleBorder(
     borderRadius: new BorderRadius.circular(10.0))),
+             SizedBox(height: 40),
+             SizedBox(height: 40),
+
     RaisedButton(
+        elevation: 10.0,
+        highlightElevation: 10.0,
+        padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
     onPressed: () {
+
     Navigator.pushNamed(context, AttendancePage.id);
     },
     color: Colors.blue,
     child: Text(
     'ATTENDANCE',
     style: TextStyle(
+        fontSize: 30,
     color: Colors.white),
     ),
     shape: new RoundedRectangleBorder(
     borderRadius: new BorderRadius.circular(10.0))),
+             SizedBox(height: 40),
+             SizedBox(height: 40),
+
     RaisedButton(
+        elevation: 10.0,
+        highlightElevation: 10.0,
+        padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
     onPressed: () {
     Navigator.pushNamed(context, AttendancePage.id);
     },
     color: Colors.blue,
     child: Text(
+
     'AR LAB',
     style: TextStyle(
+        fontSize: 30,
     color: Colors.white),
     ),
     shape: new RoundedRectangleBorder(
     borderRadius: new BorderRadius.circular(10.0))),
+             SizedBox(height: 40),
+             SizedBox(height: 40),
     RaisedButton(
+        elevation: 10.0,
+        highlightElevation: 10.0,
+        padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
     onPressed: () {
     Navigator.pushNamed(context, AttendancePage.id);
     },
@@ -131,19 +169,27 @@ class _StudentHomePageState extends State<StudentHomePage> {
     child: Text(
     'AR CLASSROOM',
     style: TextStyle(
+        fontSize: 30,
     color: Colors.white),
     ),
     shape: new RoundedRectangleBorder(
     borderRadius: new BorderRadius.circular(10.0))),
+             SizedBox(height: 40),
+             SizedBox(height: 40),
 
              RaisedButton(
+                 elevation: 10.0,
+                 highlightElevation: 10.0,
+                 padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
                  onPressed: () {
                    Navigator.push(context,MaterialPageRoute(builder: (context)=>ParentsHomePage()));
                  },
                  color: Colors.blue,
                  child: Text(
+
                    'PARENTS',
                    style: TextStyle(
+                       fontSize: 30,
                        color: Colors.white),
                  ),
                  shape: new RoundedRectangleBorder(
