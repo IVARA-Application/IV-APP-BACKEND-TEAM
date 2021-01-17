@@ -27,9 +27,13 @@ class _HealMyMindVideosPageState extends State<HealMyMindVideosPage> {
 
   @override
   void initState(){
+
    //  _controller = VideoPlayerController.network(
     //     "https://www.youtube.com/watch?v=dTu5dTEzVM4");
-    _controller = VideoPlayerController.asset("videos/video1.mp4");
+   // _controller = VideoPlayerController.asset("videos/video1.mp4");
+    _controller = VideoPlayerController.network(
+      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    );
      _initializeVideoPlayerFuture = _controller.initialize();
      _controller.setLooping(true);
      _controller.setVolume(1.0);
