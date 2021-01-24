@@ -54,75 +54,139 @@ class _ParentsHomePageState extends State<ParentsHomePage> {
             )
           ],
         ),
+        backgroundColor: Colors.lightBlue ,
+        body: _Body(),
 
-        body: Container(
-          child: ListView(
-            children: <Widget>[
-              SizedBox(height: 40),
-              SizedBox(height: 40),
-              SizedBox(height: 40),
-              RaisedButton(
-                  elevation: 10.0,
-                  highlightElevation: 10.0,
-                  padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
-                  onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>Teacherlist()));
-                  },
-                  color: Colors.blue,
-                  child: Text(
-                    'TEACHER LIST',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
+    );
+  }
+}
+
+class _Body extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+            flex: 3,
+            child: Container(
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.only(
+                        left: 30,
+                        top: 80,
+                      ),
+                    child: Text(
+                      'Hello,\nSumit Guardian',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 42,
+                     //   fontWeight: FontWeight.bold,
+                        letterSpacing: 1.5,
+                      ),
                     ),
-                  ),
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0))),
-              SizedBox(height: 40),
-              SizedBox(height: 40),
-              RaisedButton(
-                  elevation: 10.0,
-                  highlightElevation: 10.0,
-                  padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
-                  onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>AcademicsPage()));
-                  },
-                  color: Colors.blue,
-                  child: Text(
-                    'ACADEMICS',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white),
-                  ),
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0))),
-              SizedBox(height: 40),
-              SizedBox(height: 40),
-              RaisedButton(
-                  elevation: 10.0,
-                  highlightElevation: 10.0,
-                  padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
-                  onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>PAttendancePage()));
-                  },
-                  color: Colors.blue,
-                  child: Text(
-                    'ATTENDANCE',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white),
-                  ),
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0))),
+                  )
+                ],
+              ),
+             // color: Colors.lightBlue,
+            ),
+        ),
+        Expanded(
+            flex: 7,
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+              ),
+               child: ListView(
 
-            ],
+                 children: <Widget>[
+                   SizedBox(height : 20),
+                   SizedBox(height : 20),
+                   ListTile(
+                     title: Column(
+                       children: <Widget>[
+                         new MaterialButton(
+                           height: 220.0,
+                           minWidth: 340.0,
+                           color: Theme.of(context).primaryColor,
+                           textColor: Colors.white,
+                           child: new Text("TEACHER LIST",
+                               style: TextStyle(
+                                 color: Colors.white,
+                                 fontSize: 30,
+                               )),
+                           onPressed: ()  {
+                           Navigator.push(context, MaterialPageRoute(builder: (context) => Teacherlist()));
+                           },
+                           splashColor: Colors.redAccent,
+                           shape: new RoundedRectangleBorder(
+                               borderRadius: new BorderRadius.circular(15.0)),
+                         ),
+                       ],
+                     ),
+                   ),
+                   SizedBox(height : 20),
+                   SizedBox(height : 20),
+                   ListTile(
+                     title: Row(
+                       children: <Widget>[
+                         new MaterialButton(
+                           height: 80.0,
+                           minWidth: 30.0,
+                           color: Theme.of(context).primaryColor,
+                           textColor: Colors.white,
+                           child: new Text("ACADEMICS",
+                               style: TextStyle(
+                                 color: Colors.white,
+                                 fontSize: 20,
+                               )),
+                           onPressed: () {
+                           Navigator.push(context, MaterialPageRoute(builder: (context) =>  AcademicsPage()));
+
+                           },
+                           splashColor: Colors.redAccent,
+                           shape: new RoundedRectangleBorder(
+                               borderRadius: new BorderRadius.circular(15.0)),
+                         ),
+                         SizedBox(width : 20),
+                         SizedBox(width : 20),
+                         new MaterialButton(
+                           height: 80.0,
+                           minWidth: 30.0,
+                           color: Theme.of(context).primaryColor,
+                           textColor: Colors.white,
+                           child: new Text("ATTENDANCE",
+                               style: TextStyle(
+                                 color: Colors.white,
+                                 fontSize: 20,
+                               )),
+                           onPressed: ()  {
+                           Navigator.push(context, MaterialPageRoute(builder: (context) =>  PAttendancePage()));
+                           },
+                           splashColor: Colors.redAccent,
+                           shape: new RoundedRectangleBorder(
+                               borderRadius: new BorderRadius.circular(15.0)),
+                         ),
+                       ],
+                     ),
+                   )
+                 ],
+               ),
 
 
-          ),
-        )
+              ),
+
+            ),
+                ],
     );
 
-
-
   }
+
 }
