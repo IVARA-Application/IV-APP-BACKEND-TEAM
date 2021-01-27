@@ -63,7 +63,10 @@ class _ParentsHomePageState extends State<ParentsHomePage> {
             )
           ],
         ),
+
         backgroundColor: Color(0xff0772a0) ,
+
+       // backgroundColor: Colors.lightBlue ,
         body: _Body(),
 
     );
@@ -124,7 +127,10 @@ class _Body extends StatelessWidget{
                          new MaterialButton(
                            height: 220.0,
                            minWidth: 340.0,
+
                            color: Color(0xff0772a0),
+
+                       //    color: Theme.of(context).primaryColor,
                            textColor: Colors.white,
                            child: new Text("TEACHER LIST",
                                style: TextStyle(
@@ -134,7 +140,10 @@ class _Body extends StatelessWidget{
                            onPressed: ()  {
                            Navigator.push(context, MaterialPageRoute(builder: (context) => Teacherlist()));
                            },
+
                           // splashColor: Colors.redAccent,
+
+                           splashColor: Colors.redAccent,
                            shape: new RoundedRectangleBorder(
                                borderRadius: new BorderRadius.circular(15.0)),
                          ),
@@ -149,7 +158,10 @@ class _Body extends StatelessWidget{
                          new MaterialButton(
                            height: 80.0,
                            minWidth: 30.0,
+
                            color: Color(0xff0772a0),
+                      //     color: Theme.of(context).primaryColor,
+
                            textColor: Colors.white,
                            child: new Text("ACADEMICS",
                                style: TextStyle(
@@ -169,8 +181,11 @@ class _Body extends StatelessWidget{
                          new MaterialButton(
                            height: 80.0,
                            minWidth: 30.0,
+
                            color: Color(0xff0772a0),
                            //color: Theme.of(context).primaryColor,
+
+                       //    color: Theme.of(context).primaryColor,
                            textColor: Colors.white,
                            child: new Text("ATTENDANCE",
                                style: TextStyle(
