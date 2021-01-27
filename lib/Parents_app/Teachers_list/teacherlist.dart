@@ -21,8 +21,16 @@ class TeacherlistState extends State<Teacherlist>
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text("IVENTORS"),
-        backgroundColor: Colors.lightBlue,
+        title: Center(
+          child: Text(
+            'IVARA',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 30,
+            ),
+          ),
+        ),
+        backgroundColor: Color(0xff0772a0),
         actions: <Widget>[
           Row(
             children: <Widget>[

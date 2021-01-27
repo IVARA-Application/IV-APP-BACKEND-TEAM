@@ -2,17 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-import 'layout/main_drawer.dart';
 
-class NotificationPage extends StatefulWidget{
+
+class pNotificationPage extends StatefulWidget{
   static String id = 'NotificationPage';
   @override
-  _NotificationPageState  createState() => _NotificationPageState();
+  _pNotificationPageState  createState() => _pNotificationPageState();
 
 }
 
 
-class _NotificationPageState extends State<NotificationPage> {
+class _pNotificationPageState extends State<pNotificationPage> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -56,7 +56,7 @@ class _NotificationPageState extends State<NotificationPage> {
         ],
       ),
 
-      drawer: MainDrawer(),
+      // drawer: MainDrawer(),
       body: Center(
         child: Container(
           width: 330,
