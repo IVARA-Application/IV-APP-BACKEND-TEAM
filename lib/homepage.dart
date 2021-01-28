@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
                 minWidth: 200,
                 child: RaisedButton(
                   onPressed: () {
-                    //   Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPagep()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => TeacherDashboard()));
                   },
                   color: Colors.white,
                   child: Text(
