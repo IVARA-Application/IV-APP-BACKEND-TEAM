@@ -125,7 +125,7 @@ class TestCardWidget extends StatelessWidget {
                   child: CircularCountDownTimer(
                     duration: testCard.seconds,
                     controller: _controller,
-                    width: screenWidth * 0.35,
+                    width: screenWidth * 0.32,
                     height: screenHeight * 0.42,
                     color: Color(0xFF076FA0),
                     fillColor: Colors.white,

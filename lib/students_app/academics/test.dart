@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:ivara_app/students_app/notification.dart';
 import './testCard.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:ivara_app/students_app/layout/sidebar.dart';
 
 class TestPage extends StatefulWidget {
   static String id = 'TestPage';
@@ -13,6 +16,7 @@ class TestPage extends StatefulWidget {
 class _TestPageState extends State<TestPage> {
   CountDownController _controller = CountDownController();
 
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -34,13 +38,46 @@ class _TestPageState extends State<TestPage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: Drawer(),
+      
       appBar: AppBar(
-        backgroundColor: Color(0xFF076FA0),
-        title: Center(
-          child: Text('IVENTORS'),
+        backgroundColor: Color(0xff0772a0),
+        centerTitle: true,
+        elevation: 1.0,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
-        actions: [Icon(Icons.notifications)],
+        title: Text('TEST',
+        style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(LineAwesomeIcons.bell),
+            color: Colors.white,
+            highlightColor: Colors.white,
+            onPressed: () {
+              Navigator.pushNamed(context, NotificationPage.id);
+            },
+          )
+        ],
+      ),
+      drawer: MyDrawer(
+        onTap: (ctx, i) {
+          setState(() {
+            index = i;
+            Navigator.pop(ctx);
+          });
+        },
       ),
       body: SingleChildScrollView(
         child: SafeArea(
