@@ -30,7 +30,7 @@ class SubjectCardWidget extends StatelessWidget {
         onTap: () => {Navigator.pushNamed(context, SubjectChatPage.id)},
         child: Container(
             width: screenWidth,
-            height: 140,
+            height: 145,
             decoration: BoxDecoration(
               color: Color(0xff0772a0),
               borderRadius: BorderRadius.circular(10),
