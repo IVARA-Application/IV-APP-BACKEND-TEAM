@@ -45,10 +45,10 @@ class SubjectCardWidget extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.all(54),
+                  padding: EdgeInsets.only(top:screenHeight*0.075),
                   child: Text(
                     subjectCard.subjectName,
-                    style: TextStyle(fontSize: 28, color: Colors.white, fontStyle: FontStyle.italic),
+                    style: TextStyle(fontSize: 28, color: Colors.white),
                   ),
                 )
               ],

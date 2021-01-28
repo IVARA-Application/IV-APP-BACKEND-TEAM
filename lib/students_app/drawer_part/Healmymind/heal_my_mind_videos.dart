@@ -1,125 +1,98 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ivara_app/Parents_app/Parents_homepage.dart';
-import 'package:ivara_app/students_app/academics/academics.dart';
-import 'package:ivara_app/students_app/attendance/attendance.dart';
-import 'package:ivara_app/students_app/dashboard/dashboard.dart';
-import 'package:ivara_app/students_app/layout/main_drawer.dart';
 import 'package:ivara_app/students_app/notification.dart';
-import 'package:video_player/video_player.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:videos_player/model/video.model.dart';
+import 'package:videos_player/util/theme.util.dart';
+import 'package:videos_player/videos_player.dart';
+import 'package:videos_player/model/control.model.dart';
 
-
-
-
-class HealMyMindVideosPage extends StatefulWidget{
-
+class HealMyMindVideosPage extends StatefulWidget {
   static String id = 'HealMyMindVideosPage';
-
   @override
-  _HealMyMindVideosPageState  createState() => _HealMyMindVideosPageState();
-
+  _HealMyMindVideosPageState createState() => _HealMyMindVideosPageState();
 }
 
 class _HealMyMindVideosPageState extends State<HealMyMindVideosPage> {
 
-  VideoPlayerController _controller;
-  Future<void> _initializeVideoPlayerFuture;
-
-  @override
-  void initState(){
-
-   //  _controller = VideoPlayerController.network(
-    //     "https://www.youtube.com/watch?v=dTu5dTEzVM4");
-   // _controller = VideoPlayerController.asset("videos/video1.mp4");
-    _controller = VideoPlayerController.network(
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
-    );
-     _initializeVideoPlayerFuture = _controller.initialize();
-     _controller.setLooping(true);
-     _controller.setVolume(1.0);
-     super.initState();
-  }
-
-  @override
-  void dispose(){
-    _controller.dispose();
-    super.dispose();
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
+    int index = 0;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          title: Text("IVENTORS"),
-          backgroundColor: Colors.lightBlue,
-          actions: <Widget>[
-            Row(
-              children: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>NotificationPage()));
-
-                  },
-                  icon: Stack(
-                    children: <Widget>[
-                      Icon(Icons.notifications,
-                          color: Colors.white),
-                      Positioned(
-                        left: 16.0,
-                        child: Icon(Icons.brightness_1,
-                          color: Colors.red,
-                          size: 9.0,
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            )
-          ],
+      appBar: AppBar(
+        backgroundColor: Color(0xff0772a0),
+        centerTitle: true,
+        elevation: 1.0,
+        title: Text(
+          'HEAL WITH VIDEOS',
+          style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        drawer: MainDrawer(),
-
-      body: FutureBuilder(
-        future: _initializeVideoPlayerFuture,
-        builder: (context, snapshot)
-        {
-           if(snapshot.connectionState == ConnectionState.done){
-             return AspectRatio(
-               aspectRatio: _controller.value.aspectRatio,
-               child: VideoPlayer(_controller),
-             );
-           }
-           else
-             {
-               return Center(
-                 child: CircularProgressIndicator(),
-               );
-             }
-        }
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(LineAwesomeIcons.bell),
+            color: Colors.white,
+            highlightColor: Colors.white,
+            onPressed: () {
+              Navigator.pushNamed(context, NotificationPage.id);
+            },
+          )
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          setState(() {
-            if(_controller.value.isPlaying){
-              _controller.pause();
-            }
-            else
-              {
-                _controller.play();
-              }
-          });
-        },
-        child:
-        Icon(_controller.value.isPlaying ? Icons.pause : Icons.play_arrow),
+      
+      body: VideosPlayer(
+        networkVideos: [
+          new NetworkVideo(
+              id: "2",
+              name: "Elephant Dream",
+              videoUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+              thumbnailUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg",
+              videoControl: new NetworkVideoControl(
+                fullScreenByDefault: false,
+              )),
+          new NetworkVideo(
+              id: "3",
+              name: "Big Buck Bunny",
+              videoUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+              thumbnailUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+              videoControl: new NetworkVideoControl(autoPlay: true)),
+          new NetworkVideo(
+              id: "4",
+              name: "For Bigger Blazes",
+              videoUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+              thumbnailUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg"),
+          new NetworkVideo(
+              id: "5",
+              name: "For Bigger Escape",
+              videoUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+              thumbnailUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg"),
+          new NetworkVideo(
+              id: "6",
+              name: "For Bigger Fun",
+              videoUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+              thumbnailUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg"),
+          new NetworkVideo(
+              id: "7",
+              name: "For Bigger Joyrides",
+              videoUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+              thumbnailUrl:
+                  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg"),
+        ],
+        playlistStyle: Style.Style2,
       ),
     );
-
-
-
   }
 }
-
-

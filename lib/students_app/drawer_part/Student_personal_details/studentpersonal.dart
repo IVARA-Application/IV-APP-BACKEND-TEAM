@@ -6,11 +6,13 @@ import 'package:ivara_app/students_app/attendance/attendance.dart';
 import 'package:ivara_app/students_app/dashboard/dashboard.dart';
 import 'package:ivara_app/students_app/layout/main_drawer.dart';
 import 'package:ivara_app/students_app/notification.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:ivara_app/students_app/layout/sidebar.dart';
 
 
 class StudentPersonalPage extends StatefulWidget{
 
-  static String id = 'EntranceExamsPage';
+  static String id = 'studentPersonalPage';
 
   @override
   _StudentPersonalPageState  createState() => _StudentPersonalPageState();
@@ -21,62 +23,65 @@ class _StudentPersonalPageState extends State<StudentPersonalPage> {
 
   @override
   Widget build(BuildContext context) {
+    int index = 0;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          title: Text("STUDENT DETAILS"),
-          backgroundColor: Colors.lightBlue,
-          actions: <Widget>[
-            Row(
-              children: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>NotificationPage()));
-
-                  },
-                  icon: Stack(
-                    children: <Widget>[
-                      Icon(Icons.notifications,
-                          color: Colors.white),
-                      Positioned(
-                        left: 16.0,
-                        child: Icon(Icons.brightness_1,
-                          color: Colors.red,
-                          size: 9.0,
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            )
-          ],
+      appBar: AppBar(
+        backgroundColor: Color(0xff0772a0),
+        centerTitle: true,
+        elevation: 1.0,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
-        drawer: MainDrawer(),
+        title: Text('STUDENT DETAILS',
+        style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(LineAwesomeIcons.bell),
+            color: Colors.white,
+            highlightColor: Colors.white,
+            onPressed: () {
+              Navigator.pushNamed(context, NotificationPage.id);
+            },
+          )
+        ],
+      ),
+      drawer: MyDrawer(
+        onTap: (ctx, i) {
+          setState(() {
+            index = i;
+            Navigator.pop(ctx);
+          });
+        },
+      ),
 
         body: SafeArea(
           child: Container(
             child: ListView(
               children: [
-                Padding(
-                    padding: EdgeInsets.symmetric(vertical: 25.0),
-                child: Center(
-                  child: Text('Personal Info',
-                    style: TextStyle(color: Colors.black,
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.bold),
-                  ),
-                ),
-                  
-                ),
                 SizedBox(
                   height: 20.0,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 5.0),
+                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: screenWidth*0.05),
                   child: Material(
                     elevation: 20,
                     child: TextField(
                       decoration: InputDecoration(
+                      focusColor: Color(0xff0772a0),
                         border: OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(10.0),
                         ),
@@ -88,11 +93,12 @@ class _StudentPersonalPageState extends State<StudentPersonalPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 5.0),
+                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: screenWidth*0.05),
                   child: Material(
                     elevation: 20,
                     child: TextField(
                       decoration: InputDecoration(
+                      focusColor: Color(0xff0772a0),
                         border: OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(10.0),
                         ),
@@ -104,11 +110,12 @@ class _StudentPersonalPageState extends State<StudentPersonalPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 5.0),
+                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: screenWidth*0.05),
                   child: Material(
                     elevation: 20,
                     child: TextField(
                       decoration: InputDecoration(
+                      focusColor: Color(0xff0772a0),
                         border: OutlineInputBorder( borderRadius: new BorderRadius.circular(10.0),
                         ) ,
                         labelText: 'Iv ID',
@@ -119,12 +126,12 @@ class _StudentPersonalPageState extends State<StudentPersonalPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 5.0),
+                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: screenWidth*0.05),
                   child: Material(
                     elevation: 10,
                     child: TextField(
                       decoration: InputDecoration(
-                        focusColor: Colors.blue,
+                      focusColor: Color(0xff0772a0),
                         border: OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(10.0),
                         ),
@@ -136,11 +143,12 @@ class _StudentPersonalPageState extends State<StudentPersonalPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: 5.0),
+                  padding: EdgeInsets.symmetric(vertical: 20.0,horizontal: screenWidth*0.05),
                   child: Material(
                     elevation: 10,
                     child: TextField(
                       decoration: InputDecoration(
+                      focusColor: Color(0xff0772a0),
                         border: OutlineInputBorder(
                           borderRadius: new BorderRadius.circular(10.0),
                         ),

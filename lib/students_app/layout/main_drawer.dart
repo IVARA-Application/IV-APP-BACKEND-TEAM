@@ -90,7 +90,7 @@ class MainDrawer extends StatelessWidget{
               ),
             ),
             onTap: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context)=>skilldevelopmentPage()));
+              Navigator.push(context,MaterialPageRoute(builder: (context)=>SkilldevelopmentPage()));
             },
           ),
           ListTile(

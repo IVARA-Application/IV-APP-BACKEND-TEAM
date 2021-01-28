@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ivara_app/students_app/notification.dart';
+
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:ivara_app/students_app/layout/sidebar.dart';
 
 class AttendancePage extends StatefulWidget {
   static String id = 'AttendancePage';
@@ -8,6 +12,7 @@ class AttendancePage extends StatefulWidget {
 }
 
 class _AttendancePageState extends State<AttendancePage> {
+  int index = 0;
   int currentday = 0;
   Color blue = Color(0xFF076FA0);
   List<Map> attendance = [
@@ -164,13 +169,46 @@ class _AttendancePageState extends State<AttendancePage> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: Drawer(),
+      
       appBar: AppBar(
-        backgroundColor: blue,
-        title: Center(
-          child: Text('IVARA'),
+        backgroundColor: Color(0xff0772a0),
+        centerTitle: true,
+        elevation: 1.0,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
-        actions: [Icon(Icons.notifications)],
+        title: Text('ATTENDANCE',
+        style: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(LineAwesomeIcons.bell),
+            color: Colors.white,
+            highlightColor: Colors.white,
+            onPressed: () {
+              Navigator.pushNamed(context, NotificationPage.id);
+            },
+          )
+        ],
+      ),
+      drawer: MyDrawer(
+        onTap: (ctx, i) {
+          setState(() {
+            index = i;
+            Navigator.pop(ctx);
+          });
+        },
       ),
       body: SafeArea(
         child: Column(

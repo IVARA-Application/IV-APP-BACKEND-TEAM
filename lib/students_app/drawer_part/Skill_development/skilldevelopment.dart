@@ -8,16 +8,16 @@ import 'package:ivara_app/students_app/layout/main_drawer.dart';
 import 'package:ivara_app/students_app/notification.dart';
 
 
-class skilldevelopmentPage extends StatefulWidget{
+class SkilldevelopmentPage extends StatefulWidget{
 
   static String id = 'skilldevelopmentPage';
 
   @override
-  _skilldevelopmentPageState  createState() => _skilldevelopmentPageState();
+  _SkilldevelopmentPageState  createState() => _SkilldevelopmentPageState();
 
 }
 
-class _skilldevelopmentPageState extends State<skilldevelopmentPage> {
+class _SkilldevelopmentPageState extends State<SkilldevelopmentPage> {
 
   @override
   Widget build(BuildContext context) {

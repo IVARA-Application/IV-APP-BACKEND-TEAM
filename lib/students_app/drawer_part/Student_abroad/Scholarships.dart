@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ivara_app/Parents_app/Parents_homepage.dart';
-import 'package:ivara_app/students_app/academics/academics.dart';
-import 'package:ivara_app/students_app/attendance/attendance.dart';
-import 'package:ivara_app/students_app/dashboard/dashboard.dart';
 import 'package:ivara_app/students_app/layout/main_drawer.dart';
 import 'package:ivara_app/students_app/notification.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 
 
@@ -23,95 +20,140 @@ class _ScholarshipsPageState extends State<ScholarshipsPage> {
 
   @override
   Widget build(BuildContext context) {
+    int index = 0;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-          title: Text("SCHOLARSHIPS"),
-          backgroundColor: Colors.lightBlue,
-          actions: <Widget>[
-            Row(
-              children: <Widget>[
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context)=>NotificationPage()));
-
-                  },
-                  icon: Stack(
-                    children: <Widget>[
-                      Icon(Icons.notifications,
-                          color: Colors.white),
-                      Positioned(
-                        left: 16.0,
-                        child: Icon(Icons.brightness_1,
-                          color: Colors.red,
-                          size: 9.0,
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            )
-          ],
+      appBar: AppBar(
+        backgroundColor: Color(0xff0772a0),
+        centerTitle: true,
+        elevation: 1.0,
+        title: Text('SCHOLARSHIPS',
+        style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        drawer: MainDrawer(),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(LineAwesomeIcons.bell),
+            color: Colors.white,
+            highlightColor: Colors.white,
+            onPressed: () {
+              Navigator.pushNamed(context, NotificationPage.id);
+            },
+          )
+        ],
+      ),
 
         body: Container(
           child: ListView(
             children: <Widget>[
-              SizedBox(height: 40),
-              SizedBox(height: 40),
-              SizedBox(height: 40),
-              RaisedButton(
-                  elevation: 10.0,
-                  highlightElevation: 10.0,
-                  padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
-                  onPressed: () {
+              Padding(
+                padding: EdgeInsets.only(
+                  top: screenHeight * 0.08,
+                  left: screenWidth * 0.06,
+                  right: screenWidth * 0.06,
+                ),
+                child: GestureDetector(
+                  onTap: () => {
                   },
-                  color: Colors.blue,
-                  child: Text(
-                    'GITAM',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                    ),
-                  ),
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0))),
-              SizedBox(height: 40),
-              SizedBox(height: 40),
-              RaisedButton(
-                  elevation: 10.0,
-                  highlightElevation: 10.0,
-                  padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
-                  onPressed: () {
+                  child: Container(
+                      width: screenWidth,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Color(0xff0772a0),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 10.0,
+                            spreadRadius: 6.0,
+                          )
+                        ],
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top:screenHeight*0.068),
+                            child: Text(
+                              'GITAM',
+                              style: TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: screenHeight * 0.08,
+                  left: screenWidth * 0.06,
+                  right: screenWidth * 0.06,
+                ),
+                child: GestureDetector(
+                  onTap: () => {
                   },
-                  color: Colors.blue,
-                  child: Text(
-                    'VIT',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white),
-                  ),
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0))),
-              SizedBox(height: 40),
-              SizedBox(height: 40),
-              RaisedButton(
-                  elevation: 10.0,
-                  highlightElevation: 10.0,
-                  padding: EdgeInsets.symmetric(vertical: 25.0,horizontal: 5.0),
-                  onPressed: () {
+                  child: Container(
+                      width: screenWidth,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Color(0xff0772a0),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 10.0,
+                            spreadRadius: 6.0,
+                          )
+                        ],
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top:screenHeight*0.068),
+                            child: Text(
+                              'VIT',
+                              style: TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: screenHeight * 0.08,
+                  left: screenWidth * 0.06,
+                  right: screenWidth * 0.06,
+                ),
+                child: GestureDetector(
+                  onTap: () => {
                   },
-                  color: Colors.blue,
-                  child: Text(
-                    'KLU',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white),
-                  ),
-                  shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0))),
-
+                  child: Container(
+                      width: screenWidth,
+                      height: 120,
+                      decoration: BoxDecoration(
+                        color: Color(0xff0772a0),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 10.0,
+                            spreadRadius: 6.0,
+                          )
+                        ],
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top:screenHeight*0.068),
+                            child: Text(
+                              'KLU',
+                              style: TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          )
+                        ],
+                      )),
+                ),
+              ),
             ],
 
 

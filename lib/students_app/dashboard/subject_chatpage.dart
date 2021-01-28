@@ -1,8 +1,11 @@
 import 'package:condition/condition.dart';
 import 'package:flutter/material.dart';
+import 'package:ivara_app/students_app/notification.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:ivara_app/students_app/layout/sidebar.dart';
 
 class SubjectChatPage extends StatefulWidget {
   static String id = 'SubjectChatPage';
@@ -17,6 +20,7 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
   String messageText;
   final messageTextController = TextEditingController();
   final _picker = ImagePicker();
+  int index = 0;
 
   Future<void> _pickImage(ImageSource source) async {
     PickedFile selected = await _picker.getImage(source: source);
@@ -34,12 +38,46 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
+      
       appBar: AppBar(
         backgroundColor: Color(0xff0772a0),
-        title: Center(
-          child: Text('IVENTORS'),
+        centerTitle: true,
+        elevation: 1.0,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
         ),
-        actions: [Icon(Icons.notifications)],
+        title: Text('CHAT',
+        style: TextStyle(color: Colors.white, fontSize: 25),
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(LineAwesomeIcons.bell),
+            color: Colors.white,
+            highlightColor: Colors.white,
+            onPressed: () {
+              Navigator.pushNamed(context, NotificationPage.id);
+            },
+          )
+        ],
+      ),
+      drawer: MyDrawer(
+        onTap: (ctx, i) {
+          setState(() {
+            index = i;
+            Navigator.pop(ctx);
+          });
+        },
       ),
       body: SafeArea(
         child: Conditioned.boolean(_imageFile == null,
@@ -243,12 +281,31 @@ class MessageBubble extends StatelessWidget {
   MessageBubble({this.text, this.sender, this.isMe, this.time});
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment:
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(1),
+                    child: Row(
+                      mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            right: screenHeight*0.02
+                          ),
+                          child: Text(
+                            sender,
+                            style: TextStyle(fontSize: 10, color:Color(0xff0772a0)),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
           Material(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(13),
@@ -261,19 +318,20 @@ class MessageBubble extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Column(
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    sender,
-                    style: TextStyle(fontSize: 10, color: Colors.black54),
-                  ),
                   Text(
                     text,
                     style: TextStyle(color: isMe ? Color(0xff0772a0) : Colors.white),
                   ),
-                  Text(
-                    time,
-                    style: TextStyle(fontSize: 10, color: Colors.black54),
-                  ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text(
+                            time,
+                            style: TextStyle(fontSize: 10, color: isMe ? Color(0xAD0772A0) : Colors.white),
+                          ),
+                        ),
                 ],
               ),
             ),

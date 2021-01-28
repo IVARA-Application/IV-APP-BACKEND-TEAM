@@ -37,7 +37,8 @@ class _ChatToCounsellorPageState extends State<ChatToCounsellorPage> {
       appBar: AppBar(
         backgroundColor: Color(0xff0772a0),
         title: Center(
-          child: Text('CHAT TO COUNSELLOR'),
+          child: Text('CHAT TO COUNSELLOR',
+        style: TextStyle(color: Colors.white, fontSize: 20),),
         ),
         actions: [Icon(Icons.notifications)],
       ),
@@ -200,7 +201,7 @@ class MessageStream extends StatelessWidget {
       {'text': 'Thanks.', 'sender': 'Me', 'time': '08:20 PM'},
       {
         'text': 'No issues, let me look into your problem.',
-        'sender': 'Pasternek',
+        'sender': 'Counsellor',
         'time': '08:20 PM'
       },
       {
@@ -214,7 +215,7 @@ class MessageStream extends StatelessWidget {
         'sender': 'Me',
         'time': '08:23 PM'
       },
-      {'text': 'Hey David !', 'sender': 'Viren', 'time': '08:23 PM'},
+      {'text': 'Hey David !', 'sender': 'Counsellor', 'time': '08:23 PM'},
       {'text': 'Hello.', 'sender': 'Me', 'time': '08:20 PM'},
     ];
     List<MessageBubble> messageBubbles = [];
@@ -243,12 +244,31 @@ class MessageBubble extends StatelessWidget {
   MessageBubble({this.text, this.sender, this.isMe, this.time});
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
         crossAxisAlignment:
-        isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(1),
+                    child: Row(
+                      mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                            right: screenHeight*0.02
+                          ),
+                          child: Text(
+                            sender,
+                            style: TextStyle(fontSize: 10, color:Color(0xff0772a0)),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
           Material(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(13),
@@ -261,19 +281,20 @@ class MessageBubble extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Column(
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    sender,
-                    style: TextStyle(fontSize: 10, color: Colors.black54),
-                  ),
                   Text(
                     text,
                     style: TextStyle(color: isMe ? Color(0xff0772a0) : Colors.white),
                   ),
-                  Text(
-                    time,
-                    style: TextStyle(fontSize: 10, color: Colors.black54),
-                  ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text(
+                            time,
+                            style: TextStyle(fontSize: 10, color: isMe ? Color(0xAD0772A0) : Colors.white),
+                          ),
+                        ),
                 ],
               ),
             ),
