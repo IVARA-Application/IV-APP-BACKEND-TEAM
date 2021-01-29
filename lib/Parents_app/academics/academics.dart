@@ -100,7 +100,7 @@ class _AcademicsPageState extends State<AcademicsPage> {
                   padding: EdgeInsets.symmetric(vertical: screenHeight * 0.005),
                   child: Container(
                     width: screenWidth * 0.16,
-                    height: screenHeight * 0.15,
+                    height: screenHeight * 0.1,
                     child: Center(
                       child: Column(
                         children: [

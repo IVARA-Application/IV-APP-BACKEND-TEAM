@@ -15,6 +15,8 @@ class pNotificationPage extends StatefulWidget{
 class _pNotificationPageState extends State<pNotificationPage> {
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -57,33 +59,49 @@ class _pNotificationPageState extends State<pNotificationPage> {
       ),
 
       // drawer: MainDrawer(),
-      body: Center(
-        child: Container(
-          width: 330,
-          height: 250,
-          margin: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(
-                color: Color.fromARGB(75, 0, 0, 0),
-                width: 2,
+      body: Stack(
+        children: [
+          Center(
+            child: Container(
+              width: 330,
+              height: 250,
+              margin: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: Color.fromARGB(75, 0, 0, 0),
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(2,2),
+                      blurRadius: 2,
+                    )
+                  ]
               ),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  offset: Offset(2,2),
-                  blurRadius: 2,
-                )
-              ]
-          ),
 
-          child: Text(
-            '14-01-2021 \n Sumit ',
-            style: TextStyle(fontSize: 20),
+              child: Text(
+                '14-01-2021 \n Sumit ',
+                style: TextStyle(fontSize: 20),
+              ),
+              padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+            ),
           ),
-          padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
-        ),
+          Positioned(
+                left: screenWidth*0.08,
+                bottom: screenHeight*0.05,
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                  child: Material(
+                    color: Colors.transparent,
+                    shape: CircleBorder(),
+                    child: Image.asset('./assets/backbutton.png',height: screenHeight*0.1,)),),
+              ),
+        ],
       ),
 
 

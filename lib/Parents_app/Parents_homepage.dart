@@ -1,11 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ivara_app/students_app/academics/academics.dart';
-import 'package:ivara_app/students_app/attendance/attendance.dart';
-import 'package:ivara_app/students_app/dashboard/dashboard.dart';
-
-import 'package:ivara_app/students_app/notification.dart';
-
+import 'package:ivara_app/Parents_app/academics/academics.dart';
 import 'Parents_attendance/p_attendance.dart';
 import 'Pnotification.dart';
 import 'Teachers_list/teacherlist.dart';

@@ -79,46 +79,30 @@ class _TestPageState extends State<TestPage> {
           });
         },
       ),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: SafeArea(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(height: screenHeight * 0.055),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      vertical: screenHeight * 0.008,
-                      horizontal: screenWidth * 0.07),
-                  child: Text(
-                    'Upcoming Tests',
-                    style: TextStyle(fontSize: 25),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(0),
-                  child: Column(
-                      children: testCard
-                          .map((TestCard) => testCardTemplate(TestCard))
-                          .toList()),
-                )
-              ],
-            )),
-          ),
-          Positioned(
-                left: screenWidth*0.08,
-                bottom: screenHeight*0.05,
-                child: GestureDetector(
-                  onTap: (){
-                    Navigator.pop(context);
-                  },
-                  child: Material(
-                    color: Colors.transparent,
-                    shape: CircleBorder(),
-                    child: Image.asset('./assets/backbutton.png',height: screenHeight*0.1,)),),
+      body: SingleChildScrollView(
+        child: SafeArea(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(height: screenHeight * 0.055),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  vertical: screenHeight * 0.008,
+                  horizontal: screenWidth * 0.07),
+              child: Text(
+                'Upcoming Tests',
+                style: TextStyle(fontSize: 25),
               ),
-        ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(0),
+              child: Column(
+                  children: testCard
+                      .map((TestCard) => testCardTemplate(TestCard))
+                      .toList()),
+            )
+          ],
+        )),
       ),
     );
   }

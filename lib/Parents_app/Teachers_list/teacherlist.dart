@@ -19,6 +19,8 @@ class TeacherlistState extends State<Teacherlist>
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return new Scaffold(
       appBar: AppBar(
         title: Center(
@@ -57,11 +59,27 @@ class TeacherlistState extends State<Teacherlist>
           )
         ],
       ),
-    body: new Container(
-      child: new ListView.builder(
-          itemBuilder: (_,int index) => EachList(this.Names[index]),
-           itemCount: this.Names.length,
-    ),
+    body: Stack(
+      children: [
+        new Container(
+          child: new ListView.builder(
+              itemBuilder: (_,int index) => EachList(this.Names[index]),
+               itemCount: this.Names.length,
+        ),
+        ),
+        Positioned(
+                left: screenWidth*0.08,
+                bottom: screenHeight*0.05,
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                  child: Material(
+                    color: Colors.transparent,
+                    shape: CircleBorder(),
+                    child: Image.asset('./assets/backbutton.png',height: screenHeight*0.1,)),),
+              ),
+      ],
     )
     );
   }

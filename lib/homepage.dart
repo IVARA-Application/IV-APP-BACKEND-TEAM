@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                 minWidth: 200,
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => Loginpage2()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Loginpage2('Parent')));
                   },
                   color: Colors.black,
                   child: Text(
@@ -67,7 +67,8 @@ class HomePage extends StatelessWidget {
                 minWidth: 200,
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => TeacherDashboard()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Loginpage2('Teacher')));
+                    
                   },
                   color: Colors.white,
                   child: Text(
@@ -91,7 +92,8 @@ class HomePage extends StatelessWidget {
                 minWidth: 200,
                 child: RaisedButton(
                   onPressed: () {
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => StudentHomePage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Loginpage2('Student')));
+                       
                   },
                   color: Colors.yellow,
                   child: Text(
