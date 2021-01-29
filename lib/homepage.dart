@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ivara_app/Login/login.dart';
 import 'package:ivara_app/students_app/auth/login.dart';
 import 'package:ivara_app/teachers_app/dashboard.dart';
 import 'package:ivara_app/students_app/student_homepage.dart';
@@ -42,7 +43,7 @@ class HomePage extends StatelessWidget {
                 minWidth: 200,
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ParentsHomePage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Loginpage2()));
                   },
                   color: Colors.black,
                   child: Text(
