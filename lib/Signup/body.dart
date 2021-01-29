@@ -52,7 +52,7 @@ class Body2 extends StatelessWidget {
             SizedBox(height: size.height * 0.02),
             CheckboxListTile(
                   activeColor: Theme.of(context).accentColor,
-                   title: Text('I agree with all terms and condition'
+                   title: Text('   I agree with all terms and conditions'
                    ,style: TextStyle(
                        color: Colors.blue,
                        fontWeight: FontWeight.w400,
