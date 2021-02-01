@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:condition/condition.dart';
 import 'package:flutter/material.dart';
 import 'package:ivara_app/students_app/notification.dart';
@@ -6,9 +8,11 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:ivara_app/students_app/layout/sidebar.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class SubjectChatPage extends StatefulWidget {
   static String id = 'SubjectChatPage';
+  int _class = 6;
   SubjectChatPage({Key key}) : super(key: key);
 
   @override
@@ -21,7 +25,7 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
   final messageTextController = TextEditingController();
   final _picker = ImagePicker();
   int index = 0;
-
+  TextEditingController messageController = TextEditingController();
   Future<void> _pickImage(ImageSource source) async {
     PickedFile selected = await _picker.getImage(source: source);
     setState(() {
@@ -37,8 +41,9 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+    final arguments = ModalRoute.of(context).settings.arguments as Map;
+    print(arguments['subjectName']);
     return Scaffold(
-      
       appBar: AppBar(
         backgroundColor: Color(0xff0772a0),
         centerTitle: true,
@@ -57,8 +62,9 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
             );
           },
         ),
-        title: Text('CHAT',
-        style: TextStyle(color: Colors.white, fontSize: 25),
+        title: Text(
+          'CHAT',
+          style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         actions: <Widget>[
           IconButton(
@@ -85,7 +91,7 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    MessageStream(),
+                    MessageStream(arguments, widget._class),
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: screenHeight * 0.01,
@@ -134,7 +140,8 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(left: 15),
-                                        child: TextField(
+                                        child: TextFormField(
+                                          controller: messageController,
                                           keyboardType: TextInputType.multiline,
                                           maxLines: null,
                                           decoration: InputDecoration(
@@ -149,7 +156,7 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
                                       icon: Icon(Icons.photo_camera,
                                           color: Color(0xff0772a0)),
                                       onPressed: () {
-                                        _pickImage(ImageSource.camera);
+                                        sendImageMessage(arguments);
                                       },
                                     ),
                                     IconButton(
@@ -174,7 +181,13 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
                                   LineAwesomeIcons.telegram,
                                   color: Colors.white,
                                 ),
-                                onLongPress: () {},
+                                onTap: () {
+                                  if (messageController.text
+                                      .trim()
+                                      .isNotEmpty) {
+                                    sendTextMessage(arguments);
+                                  }
+                                },
                               ),
                             )
                           ],
@@ -229,47 +242,141 @@ class _SubjectChatPageState extends State<SubjectChatPage> {
       ),
     );
   }
+
+  void sendTextMessage(arguments) {
+    String message = messageController.text;
+    messageController.text = "";
+    FirebaseFirestore.instance
+        .collection("chatRoom")
+        .doc(widget._class.toString())
+        .collection(widget._class.toString())
+        .doc(arguments['subjectName'].toString().toLowerCase())
+        .collection(arguments['subjectName'].toString().toLowerCase())
+        .add(
+      {
+        'sender': 'Me',
+        'message': message,
+        'time': DateTime.now(),
+        'type': "text",
+      },
+    ).then((value) {});
+  }
+
+  void sendImageMessage(arguments) async {
+    PickedFile selected = await _picker.getImage(source: ImageSource.camera);
+    if (selected != null) {
+      String docId = DateTime.now().toString();
+      FirebaseFirestore.instance
+          .collection("chatRoom")
+          .doc(widget._class.toString())
+          .collection(widget._class.toString())
+          .doc(arguments['subjectName'].toString().toLowerCase())
+          .collection(arguments['subjectName'].toString().toLowerCase())
+          .doc(docId)
+          .set(
+        {
+          'sender': 'Me',
+          'time': DateTime.now(),
+          'type': "image",
+          'imageUrl': "",
+          'message': ""
+        },
+      ).then((value) {});
+      firebase_storage.TaskSnapshot taskSnapshot = await firebase_storage
+          .FirebaseStorage.instance
+          .ref('images/${DateTime.now()}')
+          .putFile(new File(selected.path));
+      String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+      print(downloadUrl);
+      FirebaseFirestore.instance
+          .collection("chatRoom")
+          .doc(widget._class.toString())
+          .collection(widget._class.toString())
+          .doc(arguments['subjectName'].toString().toLowerCase())
+          .collection(arguments['subjectName'].toString().toLowerCase())
+          .doc(docId)
+          .set(
+        {
+          'sender': 'Me',
+          'time': DateTime.now(),
+          'type': "image",
+          'imageUrl': downloadUrl,
+          'message': ""
+        },
+      ).then((value) {});
+    }
+  }
 }
 
 class MessageStream extends StatelessWidget {
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  Map<String, String> aruments;
+  int _class;
+  MessageStream(this.aruments, this._class);
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>> messages = [
-      {'text': 'Thanks.', 'sender': 'Me', 'time': '08:20 PM'},
-      {
-        'text': 'No issues, let me look into your problem.',
-        'sender': 'Pasternek',
-        'time': '08:20 PM'
-      },
-      {
-        'text':
-            'But I was having a litte bit of problem regarding online lectures, videos arent loading.',
-        'sender': 'Me',
-        'time': '08:20 PM'
-      },
-      {
-        'text': 'Sorry to disturb you at the uneven hour.',
-        'sender': 'Me',
-        'time': '08:23 PM'
-      },
-      {'text': 'Hey David !', 'sender': 'Viren', 'time': '08:23 PM'},
-      {'text': 'Hello.', 'sender': 'Me', 'time': '08:20 PM'},
-    ];
-    List<MessageBubble> messageBubbles = [];
-    for (var message in messages) {
-      final messageText = message['text'];
-      final messageSender = message['sender'];
-      final messageTime = message['time'];
-      String currentUser = 'Me';
-      final messageBubble = MessageBubble(
-        text: messageText,
-        sender: messageSender,
-        time: messageTime,
-        isMe: messageSender == currentUser,
-      );
-      messageBubbles.add(messageBubble);
-    }
-    return Expanded(child: ListView(reverse: true, children: messageBubbles));
+    return StreamBuilder<QuerySnapshot>(
+        stream: firebaseFirestore
+            .collection("chatRoom")
+            .doc(_class.toString())
+            .collection(_class.toString())
+            .doc(aruments['subjectName'].toLowerCase())
+            .collection(aruments['subjectName'].toLowerCase())
+            .orderBy('time', descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Expanded(
+                child: Container(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ));
+          }
+          if (!snapshot.hasData) {
+            return Expanded(
+                child: Container(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ));
+          }
+          print(snapshot.data.docs.length);
+
+          List<Map<String, dynamic>> messages = [];
+          snapshot.data.docs.forEach((doc) {
+            messages.add({
+              'text': doc['message'],
+              'sender': doc['sender'],
+              'time': doc['time'].toDate(),
+              'type': doc['type'],
+              'imageUrl': doc['type'] == "text"
+                  ? ""
+                  : doc['type'] == "image"
+                      ? doc['imageUrl']
+                      : ""
+            });
+          });
+          List<MessageBubble> messageBubbles = [];
+          for (var message in messages) {
+            final messageText = message['text'];
+            final messageSender = message['sender'];
+            DateTime messageTime = message['time'];
+            String currentUser = 'Me';
+            String imageUrl = message['imageUrl'];
+            String type = message['type'];
+            final messageBubble = MessageBubble(
+                text: messageText,
+                sender: messageSender,
+                time: "${messageTime.hour}:${messageTime.minute}",
+                isMe: messageSender == currentUser,
+                imageUrl: imageUrl,
+                type: type);
+            messageBubbles.add(messageBubble);
+          }
+          return Expanded(
+              child: ListView(reverse: true, children: messageBubbles));
+        });
   }
 }
 
@@ -278,7 +385,10 @@ class MessageBubble extends StatelessWidget {
   final String sender;
   final String time;
   final bool isMe;
-  MessageBubble({this.text, this.sender, this.isMe, this.time});
+  final String imageUrl;
+  final String type;
+  MessageBubble(
+      {this.text, this.sender, this.isMe, this.time, this.imageUrl, this.type});
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -289,23 +399,22 @@ class MessageBubble extends StatelessWidget {
         crossAxisAlignment:
             isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(1),
-                    child: Row(
-                      mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            right: screenHeight*0.02
-                          ),
-                          child: Text(
-                            sender,
-                            style: TextStyle(fontSize: 10, color:Color(0xff0772a0)),
-                          ),
-                        )
-                      ],
-                    ),
+          Padding(
+            padding: EdgeInsets.all(1),
+            child: Row(
+              mainAxisAlignment:
+                  isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(right: screenHeight * 0.02),
+                  child: Text(
+                    sender,
+                    style: TextStyle(fontSize: 10, color: Color(0xff0772a0)),
                   ),
+                )
+              ],
+            ),
+          ),
           Material(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(13),
@@ -318,20 +427,39 @@ class MessageBubble extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Column(
-        crossAxisAlignment:
-            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                crossAxisAlignment:
+                    isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    text,
-                    style: TextStyle(color: isMe ? Color(0xff0772a0) : Colors.white),
+                  type == "text"
+                      ? Text(
+                          text,
+                          style: TextStyle(
+                              color: isMe ? Color(0xff0772a0) : Colors.white),
+                        )
+                      : type == "image"
+                          ? Container(
+                              child: imageUrl == ""
+                                  ? CircularProgressIndicator()
+                                  : CachedNetworkImage(
+                                      imageUrl: imageUrl,
+                                      progressIndicatorBuilder: (context, url,
+                                              downloadProgress) =>
+                                          CircularProgressIndicator(
+                                              value: downloadProgress.progress),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
+                                    ),
+                            )
+                          : Container(),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Text(
+                      time,
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: isMe ? Color(0xAD0772A0) : Colors.white),
+                    ),
                   ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 5),
-                          child: Text(
-                            time,
-                            style: TextStyle(fontSize: 10, color: isMe ? Color(0xAD0772A0) : Colors.white),
-                          ),
-                        ),
                 ],
               ),
             ),
